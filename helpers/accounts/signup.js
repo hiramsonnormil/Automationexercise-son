@@ -67,7 +67,7 @@ async function loginsucess(page) {
     await expect(success).toHaveCSS('color', 'rgb(0, 128, 0)');
 }
 
-async function login(page, identity="male", day=1, month = 2, year=2004,newsletter = true, ) {
+async function signup(page, identity="male", day=1, month = 2, year=2004,newsletter = true, ) {
     const account = accountLocator(page);
     await account.url.click();
 
@@ -98,4 +98,4 @@ async function login(page, identity="male", day=1, month = 2, year=2004,newslett
 }
 
 
-export { login };
+export { signup };
