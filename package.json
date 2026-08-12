@@ -1,0 +1,31 @@
+{
+  "name": "son-automatic-system",
+  "version": "1.0.0",
+  "description": "AutomationExercise — QA Automation",
+  "keywords": [
+    "QA",
+    "Hiramson"
+  ],
+  "homepage": "https://github.com/hiramsonnormil/Automationexercise-son#readme",
+  "bugs": {
+    "url": "https://github.com/hiramsonnormil/Automationexercise-son/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiramsonnormil/Automationexercise-son.git"
+  },
+  "license": "ISC",
+  "author": "Hiramson",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "run dev"
+  },
+  "dependencies": {
+    "playwright": "^1.62.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0"
+  }
+}
