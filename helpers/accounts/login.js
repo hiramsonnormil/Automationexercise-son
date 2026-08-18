@@ -11,7 +11,7 @@ const locators = (page) => {
     };
 };
 
-async function Login(page) {
+async function Login(page , logoutCase=false) {
     const urlLogin = page.getByRole('link', { name: 'Login' })
     await urlLogin.click()
     const locator = locators(page);
@@ -29,6 +29,19 @@ async function Login(page) {
     } catch (error) {
         throw new error("For some reason, the login process was not completed successfully")
     }
+
+    if(logoutCase){
+        const loggedUser = page.locator('li', { hasText: 'Logged in as' }).locator('b')
+        await expect(loggedUser).toBeVisible();
+        
+        const loggedUserName = await loggedUser.textContent();
+        console.log(`the username is ${loggedUserName}`)
+        await page.getByRole('link', { name: 'logout' }).click()
+        console.log("logout sucerfully")
+        await expect(page.getByText("Login to your account")).toBeVisible()
+    }
+
+
 }
 
 export{Login}

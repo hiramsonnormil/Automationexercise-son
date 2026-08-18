@@ -17,3 +17,9 @@ test("login", async({page})=>{
 test("case 002, incorrect credential login", async({page})=>{
     await incorrectCredentialCase(page)
 })
+
+
+test("login in logout ", async({page})=>{
+    await Login(page, true)
+})
+
