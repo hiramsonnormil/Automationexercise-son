@@ -57,6 +57,11 @@ async function AddresInformation(page, city= "my city", country = "Canada", firs
     await accountlocationInfo.mobileNumber.type(mobileNumber)
 }
 
+async function isUserEmaiAlreadyExits(page) {
+    const emailAlreadyExits = page.getByText("Email Address already exist");
+    return await emailAlreadyExits.isVisible()
+
+}
 async function loginsucess(page) {
     await expect(page).toHaveURL(/account_created/);
 
@@ -67,12 +72,25 @@ async function loginsucess(page) {
     await expect(success).toHaveCSS('color', 'rgb(0, 128, 0)');
 }
 
-async function signup(page, identity="male", day=1, month = 2, year=2004,newsletter = true, ) {
+async function signup(page,{ identity="male", day=1, month = 2, year=2004,newsletter = true, EmailExistCase = false} ={}) {
     const account = accountLocator(page);
     await account.url.click();
 
     await account.input_name.type("my name")
-    await account.input_email.type(emailRandom())
+
+    if(EmailExistCase){
+        await account.input_email.type(process.env.EMAIL)
+        await account.input_bnt.click()
+        const emailExist = await isUserEmaiAlreadyExits(page)
+
+        if(emailExist == true){
+            console.log("email already exist, stop test continuation")
+            return
+        }
+    } else {
+        await account.input_email.type(emailRandom())
+    }
+
     await account.input_bnt.click()
 
     if(identity != "male"){

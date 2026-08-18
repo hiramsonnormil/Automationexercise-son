@@ -38,9 +38,18 @@ async function incorrectCredentialCase(page) {
     console.log("case pass")
 }
 
+async function logoutWithoutUserIdCase(page) {
+    const response = await page.goto(`${process.env.SITE}/logout`)
+
+    expect(response).not.toBeNull()
+    expect(response.status()).toBeLessThan(500)
+    await expect(page).not.toContainText("KeyError")
+}
+
 
 
 
 export{
-    incorrectCredentialCase
+    incorrectCredentialCase,
+    logoutWithoutUserIdCase
 }
