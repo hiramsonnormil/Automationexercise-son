@@ -29,8 +29,8 @@ jobs:
       - name: Run tests
         env:
           SITE: https://automationexercise.com/
-          EMAIL: ${{ secrets.EMAIL }}
-          PASSWORD: ${{ secrets.PASSWORD }}
+          EMAIL: ${{ SECRET.EMAIL }}
+          PASSWORD: ${{ SECRET.PASSWORD }}
           CardNumber: your_card_number
           cvv: your_cvv
           INCORECTPASSWORD: INCORECTPASSWORD
