@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-   tests_e2e:
+  tests_e2e:
     name: Run end-to-end tests
     runs-on: ubuntu-latest
     steps:
@@ -27,4 +27,13 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       - name: Run tests
+        env:
+          SITE: https://automationexercise.com/
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          CardNumber: your_card_number
+          cvv: your_cvv
+          INCORECTPASSWORD: INCORECTPASSWORD
+          expirationDate: your_expiration_date
+          CI: true
         run: npx playwright test
